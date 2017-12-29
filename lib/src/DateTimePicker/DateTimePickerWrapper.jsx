@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import { withStyles } from 'material-ui';
 
@@ -32,6 +33,7 @@ export class DateTimePickerWrapper extends PickerBase {
     labelFunc: PropTypes.func,
     utils: PropTypes.object,
     ampm: PropTypes.bool,
+    minutesStep: PropTypes.number,
     shouldDisableDate: PropTypes.func,
     animateYearScrolling: PropTypes.bool,
   }
@@ -56,12 +58,20 @@ export class DateTimePickerWrapper extends PickerBase {
     labelFunc: undefined,
     utils: defaultUtils,
     ampm: true,
+    minutesStep: 1,
     shouldDisableDate: undefined,
     animateYearScrolling: false,
   }
 
   default12hFormat = 'MMMM Do hh:mm a'
   default24hFormat = 'MMMM Do HH:mm'
+
+  componentDidMount() {
+    const coeff = 1000 * 60 * this.props.minutesStep;
+    const { date } = this.state;
+    const rounded = moment(Math.ceil(date.valueOf() / coeff) * coeff);
+    this.setState({ date: rounded })
+  }
 
   render() {
     const { date } = this.state;
@@ -87,6 +97,7 @@ export class DateTimePickerWrapper extends PickerBase {
       labelFunc,
       utils,
       ampm,
+      minutesStep,
       shouldDisableDate,
       animateYearScrolling,
       ...other
@@ -122,6 +133,7 @@ export class DateTimePickerWrapper extends PickerBase {
           renderDay={renderDay}
           utils={utils}
           ampm={ampm}
+          minutesStep={minutesStep}
           shouldDisableDate={shouldDisableDate}
           animateYearScrolling={animateYearScrolling}
         />
@@ -137,4 +149,3 @@ const styles = {
 };
 
 export default withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerWrapper);
-

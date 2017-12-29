@@ -14,11 +14,12 @@ export class Clock extends Component {
     onChange: PropTypes.func.isRequired,
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
     ampm: PropTypes.bool,
-    minutesStep: PropTypes.number.isRequired,
+    minutesStep: PropTypes.number,
   }
 
   static defaultProps = {
     ampm: false,
+    minutesStep: 1,
   }
 
   setTime(e, isFinish = false) {

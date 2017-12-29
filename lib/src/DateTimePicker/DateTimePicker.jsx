@@ -32,6 +32,7 @@ export class DateTimePicker extends Component {
     renderDay: PropTypes.func,
     utils: PropTypes.object,
     ampm: PropTypes.bool,
+    minutesStep: PropTypes.number,
     shouldDisableDate: PropTypes.func,
     animateYearScrolling: PropTypes.bool,
   }
@@ -51,6 +52,7 @@ export class DateTimePicker extends Component {
     renderDay: undefined,
     utils: defaultUtils,
     ampm: true,
+    minutesStep: 1,
     shouldDisableDate: undefined,
     animateYearScrolling: false,
   }
@@ -100,6 +102,7 @@ export class DateTimePicker extends Component {
       renderDay,
       utils,
       ampm,
+      minutesStep,
       shouldDisableDate,
       animateYearScrolling,
     } = this.props;
@@ -170,6 +173,7 @@ export class DateTimePicker extends Component {
             date={date}
             onChange={this.handleChange}
             utils={utils}
+            step={minutesStep}
           />
         </View>
       </Fragment>

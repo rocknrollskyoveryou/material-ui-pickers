@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import ModalWrapper from '../wrappers/ModalWrapper';
 import TimePicker from './TimePicker';
@@ -21,6 +22,7 @@ export default class TimePickerWrapper extends PickerBase {
     invalidLabel: PropTypes.string,
     utils: PropTypes.object,
     ampm: PropTypes.bool,
+    minutesStep: PropTypes.number,
   }
 
   static defaultProps = {
@@ -31,16 +33,24 @@ export default class TimePickerWrapper extends PickerBase {
     invalidLabel: undefined,
     utils: defaultUtils,
     ampm: true,
+    minutesStep: 1,
   }
 
   default12hFormat = 'hh:mm A'
   default24hFormat = 'HH:mm'
 
+  componentDidMount() {
+    const coeff = 1000 * 60 * this.props.minutesStep;
+    const { date } = this.state;
+    const rounded = moment(Math.ceil(date.valueOf() / coeff) * coeff);
+    this.setState({ date: rounded })
+  }
+
   render() {
     const { date } = this.state;
     const {
       value, format, autoOk, onChange, returnMoment, invalidLabel,
-      utils, ampm, ...other
+      utils, ampm, minutesStep, ...other
     } = this.props;
 
     return (
@@ -59,6 +69,7 @@ export default class TimePickerWrapper extends PickerBase {
           onChange={this.handleChange}
           utils={utils}
           ampm={ampm}
+          minutesStep={minutesStep}
         />
       </ModalWrapper>
     );
