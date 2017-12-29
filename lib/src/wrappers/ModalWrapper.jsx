@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ModalDialog from '../_shared/ModalDialog';
+import PickerTitle from '../_shared/PickerTitle';
 import DateTextField from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';
 
@@ -16,6 +17,7 @@ export default class ModalWrapper extends PureComponent {
     labelFunc: PropTypes.func,
     okLabel: PropTypes.string,
     cancelLabel: PropTypes.string,
+    title: PropTypes.string,
   }
 
   static defaultProps = {
@@ -28,6 +30,7 @@ export default class ModalWrapper extends PureComponent {
     format: undefined,
     onAccept: undefined,
     onDismiss: undefined,
+    title: undefined,
   }
 
   state = {
@@ -68,6 +71,7 @@ export default class ModalWrapper extends PureComponent {
       labelFunc,
       okLabel,
       cancelLabel,
+      title,
       ...other
     } = this.props;
 
@@ -91,6 +95,7 @@ export default class ModalWrapper extends PureComponent {
           okLabel={okLabel}
           cancelLabel={cancelLabel}
         >
+          { title && <PickerTitle text={title} /> }
           {children}
         </ModalDialog>
       </div>
