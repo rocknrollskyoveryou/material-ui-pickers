@@ -14,6 +14,7 @@ export class Clock extends Component {
     onChange: PropTypes.func.isRequired,
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
     ampm: PropTypes.bool,
+    minutesStep: PropTypes.number.isRequired,
   }
 
   static defaultProps = {
@@ -31,7 +32,7 @@ export class Clock extends Component {
     }
 
     const value = this.props.type === clockType.MINUTES
-      ? getMinutes(offsetX, offsetY)
+      ? getMinutes(offsetX, offsetY, 6 * this.props.minutesStep)
       : getHours(offsetX, offsetY, this.props.ampm);
 
     this.props.onChange(value, isFinish);
@@ -141,4 +142,3 @@ const styles = theme => ({
 });
 
 export default withStyles(styles, { name: 'MuiPickersClock' })(Clock);
-

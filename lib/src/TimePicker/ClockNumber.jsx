@@ -37,10 +37,12 @@ export class ClockNumber extends Component {
     selected: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
     isInner: PropTypes.bool,
+    visible: PropTypes.bool,
   }
 
   static defaultProps = {
     isInner: false,
+    visible: true,
   }
 
   getTransformStyle = (index) => {
@@ -53,11 +55,12 @@ export class ClockNumber extends Component {
 
   render() {
     const {
-      selected, label, index, classes, isInner,
+      selected, label, index, classes, isInner, visible,
     } = this.props;
 
     const className = classnames(classes.clockNumber, {
       [classes.selected]: selected,
+      [classes.visible]: visible,
     });
 
     return (
@@ -81,10 +84,10 @@ const styles = (theme) => {
       height: size,
       position: 'absolute',
       left: `calc(50% - ${size / 2}px)`,
-      display: 'inline-flex',
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: '50%',
+      display: 'none',
       color: theme.palette.type === 'light'
         ? theme.palette.text.primary
         : theme.palette.text.hint,
@@ -92,8 +95,10 @@ const styles = (theme) => {
     selected: {
       color: theme.palette.common.white,
     },
+    visible: {
+      display: 'inline-flex',
+    }
   };
 };
 
 export default withStyles(styles, { name: 'MuiPickersClockNumber' })(ClockNumber);
-
