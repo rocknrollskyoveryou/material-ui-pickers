@@ -43,6 +43,7 @@ export default class BasicUsage extends Component {
             placeholder="08:00 AM"
             value={selectedDate}
             onChange={this.handleDateChange}
+            minutesStep={15}
           />
         </div>
       </Fragment>

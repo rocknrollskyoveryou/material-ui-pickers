@@ -17,12 +17,14 @@ export class TimePicker extends Component {
     children: PropTypes.node,
     utils: PropTypes.object,
     ampm: PropTypes.bool,
+    minutesStep: PropTypes.number,
   }
 
   static defaultProps = {
     children: null,
     utils: defaultUtils,
     ampm: true,
+    minutesStep: 1,
   }
 
   state = {
@@ -71,7 +73,7 @@ export class TimePicker extends Component {
 
   render() {
     const {
-      classes, theme, date, utils, ampm,
+      classes, theme, date, utils, ampm, minutesStep
     } = this.props;
 
     const { isHourViewShown, meridiemMode } = this.state;
@@ -146,6 +148,7 @@ export class TimePicker extends Component {
                 date={date}
                 onChange={this.handleMinutesChange}
                 utils={utils}
+                step={minutesStep}
               />
         }
       </Fragment>
