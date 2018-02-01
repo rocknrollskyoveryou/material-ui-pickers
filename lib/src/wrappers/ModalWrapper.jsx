@@ -1,7 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ModalDialog from '../_shared/ModalDialog';
-import PickerTitle from '../_shared/PickerTitle';
 import DateTextField from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';
 
@@ -113,8 +112,8 @@ export default class ModalWrapper extends PureComponent {
           okLabel={okLabel}
           cancelLabel={cancelLabel}
           clearable={clearable}
+          title={title}
         >
-          { title && <PickerTitle text={title} /> }
           {children}
         </ModalDialog>
       </Fragment>

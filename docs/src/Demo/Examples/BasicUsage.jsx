@@ -44,6 +44,7 @@ export default class BasicUsage extends Component {
             value={selectedDate}
             onChange={this.handleDateChange}
             minutesStep={15}
+            title="From Time"
           />
         </div>
       </Fragment>

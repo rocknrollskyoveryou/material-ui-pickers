@@ -6,11 +6,23 @@ import Button from 'material-ui/Button';
 import Dialog from 'material-ui/Dialog/Dialog';
 import DialogActions from 'material-ui/Dialog/DialogActions';
 import DialogContent from 'material-ui/Dialog/DialogContent';
+import Typography from 'material-ui/Typography';
+import Paper from 'material-ui/Paper';
+
+import PickerTitle from './PickerTitle';
 
 const dialogWidth = 310;
 const styles = {
   dialogRoot: {
     minWidth: dialogWidth,
+    boxShadow: 'none',
+    backgroundColor: 'transparent',
+    margin: 0,
+    overflowY: 'visible',
+  },
+  dialogContentRoot: {
+    margin: '0 32px',
+    overflowY: 'auto',
   },
   dialog: {
     width: dialogWidth,
@@ -37,44 +49,48 @@ const ModalDialog = ({
   clearLabel,
   dialogContentClassName,
   clearable,
+  title,
   ...other
 }) => (
   <Dialog onClose={onDismiss} classes={{ paper: classes.dialogRoot }} {...other}>
-    <DialogContent className={classnames(classes.dialog, dialogContentClassName)}>
-      { children }
-    </DialogContent>
+    { title && <PickerTitle text={title}/> }
+    <Paper className={classes.dialogContentRoot} elevation={24}>
+      <DialogContent className={classnames(classes.dialog, dialogContentClassName)}>
+        { children }
+      </DialogContent>
 
-    <DialogActions
-      classes={{
-        action: clearable && classes.dialogActions,
-      }}
-    >
+      <DialogActions
+        classes={{
+          action: clearable && classes.dialogActions,
+        }}
+      >
 
-      { clearable &&
+        { clearable &&
+          <Button
+            color="primary"
+            onClick={onClear}
+            aria-label={clearLabel}
+          >
+            { clearLabel }
+          </Button>
+        }
         <Button
           color="primary"
-          onClick={onClear}
-          aria-label={clearLabel}
+          onClick={onDismiss}
+          aria-label={cancelLabel}
         >
-          { clearLabel }
+          { cancelLabel }
         </Button>
-      }
-      <Button
-        color="primary"
-        onClick={onDismiss}
-        aria-label={cancelLabel}
-      >
-        { cancelLabel }
-      </Button>
 
-      <Button
-        color="primary"
-        onClick={onAccept}
-        aria-label={okLabel}
-      >
-        { okLabel }
-      </Button>
-    </DialogActions>
+        <Button
+          color="primary"
+          onClick={onAccept}
+          aria-label={okLabel}
+        >
+          { okLabel }
+        </Button>
+      </DialogActions>
+    </Paper>
   </Dialog>
 );
 

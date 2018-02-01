@@ -10,7 +10,7 @@ const PickerTitle = (props) => {
 
   return (
     <Toolbar className={classnames(classes.toolbar, className)} {...other}>
-      <Typography type="title" color="inherit">
+      <Typography type="display1" color="inherit">
         { text }
       </Typography>
     </Toolbar>
@@ -31,9 +31,7 @@ const styles = theme => ({
   toolbar: {
     justifyContent: 'center',
     color: '#fff',
-    backgroundColor: theme.palette.type === 'light'
-      ? theme.palette.primary[400]
-      : theme.palette.background.default,
+    backgroundColor: 'transparent',
   },
 });
 
