@@ -5,14 +5,12 @@ import { Toolbar, withStyles, Typography } from 'material-ui';
 
 const PickerTitle = (props) => {
   const {
-    children, className, classes, text, ...other
+    children, className, classes, ...other
   } = props;
 
   return (
     <Toolbar className={classnames(classes.toolbar, className)} {...other}>
-      <Typography type="display1" color="inherit">
-        { text }
-      </Typography>
+      { children }
     </Toolbar>
   );
 };
@@ -20,7 +18,6 @@ const PickerTitle = (props) => {
 PickerTitle.propTypes = {
   className: PropTypes.string,
   classes: PropTypes.object.isRequired,
-  text: PropTypes.string.isRequired,
 };
 
 PickerTitle.defaultProps = {

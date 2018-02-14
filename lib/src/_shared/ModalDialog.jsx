@@ -49,11 +49,11 @@ const ModalDialog = ({
   clearLabel,
   dialogContentClassName,
   clearable,
-  title,
+  baTitle,
   ...other
 }) => (
   <Dialog onClose={onDismiss} classes={{ paper: classes.dialogRoot }} {...other}>
-    { title && <PickerTitle text={title}/> }
+    { baTitle && <PickerTitle>{ baTitle }</PickerTitle> }
     <Paper className={classes.dialogContentRoot} elevation={24}>
       <DialogContent className={classnames(classes.dialog, dialogContentClassName)}>
         { children }
@@ -106,6 +106,7 @@ ModalDialog.propTypes = {
   cancelLabel: PropTypes.string,
   clearLabel: PropTypes.string,
   clearable: PropTypes.bool.isRequired,
+  baTitle: PropTypes.node,
 };
 
 ModalDialog.defaultProps = {
@@ -113,6 +114,7 @@ ModalDialog.defaultProps = {
   okLabel: 'OK',
   cancelLabel: 'Cancel',
   clearLabel: 'Clear',
+  baTitle: undefined,
 };
 
 export default withStyles(styles, { name: 'MuiPickersModal' })(ModalDialog);
