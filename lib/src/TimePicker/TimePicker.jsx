@@ -88,21 +88,21 @@ export class TimePicker extends Component {
         <PickerToolbar className={classes.toolbar}>
           <div className={hourMinuteClassName}>
             <ToolbarButton
-              type="display3"
+              variant="display3"
               onClick={this.openHourView}
               selected={isHourViewShown}
               label={utils.getHourText(date, ampm)}
             />
 
             <ToolbarButton
-              type="display3"
+              variant="display3"
               label=":"
               selected={false}
               className={classes.separator}
             />
 
             <ToolbarButton
-              type="display3"
+              variant="display3"
               onClick={this.openMinutesView}
               selected={!isHourViewShown}
               label={utils.getMinuteText(date)}
@@ -115,7 +115,7 @@ export class TimePicker extends Component {
                 <ToolbarButton
                   className={classes.ampmLabel}
                   selected={meridiemMode === 'am'}
-                  type="subheading"
+                  variant="subheading"
                   label={utils.getMeridiemText('am')}
                   onClick={this.setMeridiemMode('am')}
                 />
@@ -123,7 +123,7 @@ export class TimePicker extends Component {
                 <ToolbarButton
                   className={classes.ampmLabel}
                   selected={meridiemMode === 'pm'}
-                  type="subheading"
+                  variant="subheading"
                   label={utils.getMeridiemText('pm')}
                   onClick={this.setMeridiemMode('pm')}
                 />
